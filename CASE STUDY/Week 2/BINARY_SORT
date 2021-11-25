@@ -1,0 +1,13 @@
+Def. binary Search(A,x):
+n=len(A)
+beg=0
+end=n-1
+result=-1
+while(beg<=end);
+	mid=(beg+end)/2
+	if(A[mid]<=x):
+	beg=mid+1
+	result=mid
+	Else:
+	end=mid-1
+Return result
