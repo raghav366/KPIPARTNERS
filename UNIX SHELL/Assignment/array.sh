@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "array of lements"
+echo "Array of elements"
 read line
 arr=(${line})
 for i in ${arr[@]}
