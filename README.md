@@ -1,1 +1,1 @@
-https://powerbicdn.azureedge.net/mediahandler/partnersv2/partnerfiles/kpi-partners/powerbi-directory/en-us/b665b19e121b74588e7a5769283f596548fc8b6fbb9897a1c188d3a3e5a53d62.png
+
