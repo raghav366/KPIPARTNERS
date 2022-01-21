@@ -1,0 +1,61 @@
+[cloudera@quickstart ~]$ hbase shell
+OpenJDK 64-Bit Server VM warning: Using incremental CMS is deprecated and will likely be removed in a future release
+22/01/20 22:24:45 INFO Configuration.deprecation: hadoop.native.lib is deprecated. Instead, use io.native.lib.available
+HBase Shell; enter 'help<RETURN>' for list of supported commands.
+Type "exit<RETURN>" to leave the HBase Shell
+Version 1.2.0-cdh5.13.0, rUnknown, Wed Oct  4 11:16:18 PDT 2017
+
+hbase(main):001:0> create 'student', 'college data', 'personel data'
+0 row(s) in 1.4130 seconds
+
+=> Hbase::Table - student
+hbase(main):002:0> list
+TABLE                                                                           
+student                                                                         
+1 row(s) in 0.0170 seconds
+
+=> ["student"]
+hbase(main):003:0> put 'student', '1', 'college data: college', 'pigce'
+0 row(s) in 0.1060 seconds
+
+hbase(main):004:0> get 'student', '1'
+COLUMN                CELL                                                      
+ college data: colleg timestamp=1642747678090, value=pigce                      
+ e                                                                              
+1 row(s) in 0.0240 seconds
+
+hbase(main):005:0> scan 'student'
+ROW                   COLUMN+CELL                                               
+ 1                    column=college data: college, timestamp=1642747678090, val
+                      ue=pigce                                                  
+1 row(s) in 0.0350 seconds
+
+hbase(main):006:0> put 'student', '1', 'personel data: name', 'Raghav'
+0 row(s) in 0.0040 seconds
+
+hbase(main):007:0> scan 'student'
+ROW                                                    COLUMN+CELL                                                                                                                                                  
+ 1                                                     column=college data: college, timestamp=1642747678090, value=pigce                                                                                           
+ 1                                                     column=personel data: name, timestamp=1642747851913, value=Raghav                                                                                            
+1 row(s) in 0.0090 seconds
+
+hbase(main):008:0> put 'student', '1', 'college data: college', 'pce'
+0 row(s) in 0.0040 seconds
+
+hbase(main):009:0> scan 'student'
+ROW                                                    COLUMN+CELL                                                                                                                                                  
+ 1                                                     column=college data: college, timestamp=1642747938008, value=pce                                                                                             
+ 1                                                     column=personel data: name, timestamp=1642747851913, value=Raghav                                                                                            
+1 row(s) in 0.0070 seconds
+
+hbase(main):010:0> put 'student', '1', 'personel data: name, age', 'Raghav, 23'
+0 row(s) in 0.0040 seconds
+
+hbase(main):011:0> scan 'student'
+ROW                                                    COLUMN+CELL                                                                                                                                                  
+ 1                                                     column=college data: college, timestamp=1642747938008, value=pce                                                                                             
+ 1                                                     column=personel data: name, timestamp=1642747851913, value=Raghav                                                                                            
+ 1                                                     column=personel data: name, age, timestamp=1642748062952, value=Raghav, 23                                                                                   
+1 row(s) in 0.0110 seconds
+
+hbase(main):012:0> 
