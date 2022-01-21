@@ -59,3 +59,64 @@ ROW                                                    COLUMN+CELL
 1 row(s) in 0.0110 seconds
 
 hbase(main):012:0> 
+hbase
+Usage: hbase [<options>] <command> [<args>]
+Options:
+  --config DIR    Configuration direction to use. Default: ./conf
+  --hosts HOSTS   Override the list in 'regionservers' file
+  --auth-as-server Authenticate to ZooKeeper using servers configuration
+
+Commands:
+Some commands take arguments. Pass no args or -h for usage.
+  shell           Run the HBase shell
+  hbck            Run the hbase 'fsck' tool
+  snapshot        Create a new snapshot of a table
+  snapshotinfo    Tool for dumping snapshot information
+  wal             Write-ahead-log analyzer
+  hfile           Store file analyzer
+  zkcli           Run the ZooKeeper shell
+  upgrade         Upgrade hbase
+  master          Run an HBase HMaster node
+  regionserver    Run an HBase HRegionServer node
+  zookeeper       Run a Zookeeper server
+  rest            Run an HBase REST server
+  thrift          Run the HBase Thrift server
+  thrift2         Run the HBase Thrift2 server
+  clean           Run the HBase clean up script
+  classpath       Dump hbase CLASSPATH
+  mapredcp        Dump CLASSPATH entries required by mapreduce
+  pe              Run PerformanceEvaluation
+  ltt             Run LoadTestTool
+  version         Print the version
+  CLASSNAME       Run the class named CLASSNAME
+[cloudera@quickstart ~]$ hbase shell
+OpenJDK 64-Bit Server VM warning: Using incremental CMS is deprecated and will likely be removed in a future release
+22/01/20 23:09:03 INFO Configuration.deprecation: hadoop.native.lib is deprecated. Instead, use io.native.lib.available
+HBase Shell; enter 'help<RETURN>' for list of supported commands.
+Type "exit<RETURN>" to leave the HBase Shell
+Version 1.2.0-cdh5.13.0, rUnknown, Wed Oct  4 11:16:18 PDT 2017
+
+hbase(main):001:0> create 'emp', 'personel_data'
+0 row(s) in 1.4040 seconds
+
+=> Hbase::Table - emp
+hbase(main):002:0> list
+TABLE                                                                                                                                                                                                               
+emp                                                                                                                                                                                                                 
+student                                                                                                                                                                                                             
+2 row(s) in 0.0150 seconds
+
+=> ["emp", "student"]
+hbase(main):003:0> hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.separator="," -Dimporttsv.columns="HBASE_ROW_KEY,personel_data:name,personel_data:age,personel_data:gender" emp /user/cloudera/sample_kpi.csv
+SyntaxError: (hbase):3: syntax error, unexpected tIDENTIFIER
+
+hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.separator="," -Dimporttsv.columns="HBASE_ROW_KEY,personel_data:name,personel_data:age,personel_data:gender" emp /user/cloudera/sample_kpi.csv
+                                                                                                                                                                            ^
+
+hbase(main):004:0> hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.separator="," -Dimporttsv.columns="HBASE_ROW_KEY,personel_data:name,personel_data:age,personel_data:gender" emp /home/cloudera/sample_kpi.csv
+SyntaxError: (hbase):4: syntax error, unexpected tIDENTIFIER
+
+hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.separator="," -Dimporttsv.columns="HBASE_ROW_KEY,personel_data:name,personel_data:age,personel_data:gender" emp /home/cloudera/sample_kpi.csv
+                                                                                                                                                                            ^
+
+hbase(main):005:0> 
